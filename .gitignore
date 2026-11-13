@@ -1,0 +1,23 @@
+# Reglas generales del repositorio.
+# Las reglas específicas están en backend/.gitignore y frontend/.gitignore
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.idea/
+*.iml
+*.swp
+
+# Variables de entorno / secretos
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Archivos comprimidos sueltos
+*.zip
