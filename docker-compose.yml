@@ -1,0 +1,39 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: parqueo
+      POSTGRES_USER: parqueo
+      POSTGRES_PASSWORD: parqueo
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U parqueo -d parqueo"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/parqueo
+      DB_USER: parqueo
+      DB_PASSWORD: parqueo
+      CORS_ALLOWED_ORIGINS: http://localhost:4200
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
