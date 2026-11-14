@@ -1,0 +1,32 @@
+<h1>Cierre de caja</h1>
+
+<form class="tarjeta fila-acciones" [formGroup]="form" (ngSubmit)="consultar()">
+  <label>
+    Fecha (fecha de salida, hora de Lima)
+    <input type="date" formControlName="fecha" />
+  </label>
+  <button type="submit" [disabled]="cargando()">
+    {{ cargando() ? 'Consultando…' : 'Consultar' }}
+  </button>
+</form>
+
+<app-error-alert [error]="error()" />
+
+@if (resultado(); as r) {
+  <div class="resumen-cierre">
+    <div class="tarjeta indicador">
+      <span class="etiqueta-indicador">Fecha</span>
+      <span class="valor">{{ fechaLegible(r.fecha) }}</span>
+    </div>
+    <div class="tarjeta indicador">
+      <span class="etiqueta-indicador">Tickets</span>
+      <span class="valor">{{ r.cantidad }}</span>
+    </div>
+    <div class="tarjeta indicador">
+      <span class="etiqueta-indicador">Total cobrado</span>
+      <span class="valor">{{ r.total_centimos | soles }}</span>
+    </div>
+  </div>
+
+  <app-subtotales [porTipo]="r.por_tipo" [perdidos]="r.perdidos" />
+}

@@ -1,0 +1,22 @@
+.resumen-cierre {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.indicador {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.etiqueta-indicador {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.valor {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1f3a5f;
+}

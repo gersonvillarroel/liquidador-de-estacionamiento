@@ -1,0 +1,30 @@
+<div class="tarjeta">
+  <h2>Subtotales</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Concepto</th>
+        <th class="monto">Tickets</th>
+        <th class="monto">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (subtotal of porTipo(); track subtotal.tipo) {
+        <tr>
+          <td>{{ subtotal.tipo }}</td>
+          <td class="monto">{{ subtotal.cantidad }}</td>
+          <td class="monto">{{ subtotal.total_centimos | soles }}</td>
+        </tr>
+      }
+      <tr class="separador">
+        <td>Tickets perdidos</td>
+        <td class="monto">{{ perdidos().cantidad }}</td>
+        <td class="monto">{{ perdidos().total_centimos | soles }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="ayuda">
+    "Tickets perdidos" incluye el total completo que pagaron esos tickets (tarifa + cargo del Art. 10).
+    Esos tickets también están contados en su tipo de vehículo.
+  </p>
+</div>
