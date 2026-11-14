@@ -1,0 +1,20 @@
+.alerta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e0a3a3;
+  border-radius: 6px;
+  background: #fdecec;
+  color: #8a1f1f;
+}
+
+.codigo {
+  font-family: Consolas, monospace;
+  font-weight: 700;
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+  background: #8a1f1f;
+  color: #fff;
+}
