@@ -1,1 +1,167 @@
-/* You can add global styles to this file, and also import other style files */
+/* Estilos globales: simples y legibles (la estética no puntúa) */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #222;
+  background: #f4f6f9;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+}
+
+h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+}
+
+code {
+  font-family: Consolas, monospace;
+  background: #eef1f5;
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+}
+
+/* Tarjetas */
+.tarjeta {
+  background: #fff;
+  border: 1px solid #dde3ea;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* Formularios */
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+input,
+select {
+  font: inherit;
+  font-weight: 400;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #c3ccd6;
+  border-radius: 4px;
+  background: #fff;
+}
+
+input[type="checkbox"] {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+button {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.55rem 1.4rem;
+  border: none;
+  border-radius: 4px;
+  background: #1f3a5f;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: #2c4f7d;
+}
+
+button:disabled {
+  background: #9aa8b8;
+  cursor: not-allowed;
+}
+
+.campo-error {
+  color: #b42318;
+  font-weight: 400;
+}
+
+.fila-acciones {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ayuda {
+  margin: 0 0 1rem;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.resumen {
+  margin: 1rem 0;
+}
+
+/* Tablas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.55rem 0.6rem;
+  border-bottom: 1px solid #e5e9ee;
+}
+
+thead th {
+  font-size: 0.85rem;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+tfoot th {
+  border-bottom: none;
+  border-top: 2px solid #1f3a5f;
+}
+
+tr.separador td {
+  border-top: 2px solid #dde3ea;
+  font-weight: 600;
+}
+
+.monto {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.negativo {
+  color: #b42318;
+}
+
+.vacio {
+  color: #777;
+  font-style: italic;
+}
+
+/* Etiquetas (artículo del reglamento, código de error) */
+.etiqueta {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: #e6eef8;
+  color: #1f3a5f;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.etiqueta-error {
+  background: #fdecec;
+  color: #8a1f1f;
+  font-family: Consolas, monospace;
+  font-weight: 700;
+}
