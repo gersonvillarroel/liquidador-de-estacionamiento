@@ -7,7 +7,8 @@ public enum CodigoError {
     E01("La salida es anterior a la entrada", HttpStatus.UNPROCESSABLE_CONTENT),
     E02("El tipo de vehículo no es AUTO ni MOTO", HttpStatus.UNPROCESSABLE_CONTENT),
     E03("Una fecha u hora no tiene un formato aceptado", HttpStatus.UNPROCESSABLE_CONTENT),
-    E04("El campo perdido no es SI, NO ni vacío", HttpStatus.UNPROCESSABLE_CONTENT);
+    E04("El campo perdido no es SI, NO ni vacío", HttpStatus.UNPROCESSABLE_CONTENT),
+    E05("Falta una fecha u hora obligatoria", HttpStatus.UNPROCESSABLE_CONTENT);
 
     private final String mensaje;
     private final HttpStatus status;

@@ -15,7 +15,7 @@ import com.quilla.parqueo.exception.CodigoError;
 import com.quilla.parqueo.exception.ReglaNegocioException;
 import com.quilla.parqueo.model.TipoVehiculo;
 
-// Convierte los textos de entrada a tipos de Java, lanzando E02/E03 si no son válidos
+// Convierte los textos de entrada a tipos de Java, lanzando E02/E03/E04/E05 si no son válidos
 @Component
 public class ConversorDatos {
 
@@ -27,11 +27,12 @@ public class ConversorDatos {
      * Fecha y hora a Instant.
      * - Con zona ("...Z", "...-05:00", "...+01:00"): se respeta su zona.
      * - Sin zona ("2026-10-12 08:15", "2026-10-12T08:15:00"): se interpreta como hora de Lima.
-     * - Cualquier otro formato, vacío o fecha inexistente: E03.
+     * - Vacío o ausente: E05.
+     * - Cualquier otro formato o fecha inexistente: E03.
      */
     public Instant fechaHora(String valor) {
         if (valor == null || valor.isBlank()) {
-            throw new ReglaNegocioException(CodigoError.E03);
+            throw new ReglaNegocioException(CodigoError.E05);
         }
         String texto = valor.trim();
 
@@ -52,10 +53,10 @@ public class ConversorDatos {
         }
     }
 
-    // Fecha calendario "2026-10-12" (cierre de caja). Otro formato o fecha inexistente: E03.
+    // Fecha calendario "2026-10-12" (cierre de caja). Vacía: E05. Otro formato o fecha inexistente: E03.
     public LocalDate fecha(String valor) {
         if (valor == null || valor.isBlank()) {
-            throw new ReglaNegocioException(CodigoError.E03);
+            throw new ReglaNegocioException(CodigoError.E05);
         }
         try {
             return LocalDate.parse(valor.trim(), DateTimeFormatter.ISO_LOCAL_DATE);
@@ -74,5 +75,15 @@ public class ConversorDatos {
         } catch (IllegalArgumentException e) {
             throw new ReglaNegocioException(CodigoError.E02);
         }
+    }
+
+    // Campo "perdido" del CSV: SI, NO o vacío (= NO), sin distinguir mayúsculas. Otro valor: E04.
+    public boolean perdido(String valor) {
+        String texto = valor == null ? "" : valor.trim().toUpperCase(Locale.ROOT);
+        return switch (texto) {
+            case "", "NO" -> false;
+            case "SI" -> true;
+            default -> throw new ReglaNegocioException(CodigoError.E04);
+        };
     }
 }
