@@ -6,7 +6,7 @@ services:
       POSTGRES_USER: parqueo
       POSTGRES_PASSWORD: parqueo
     ports:
-      - "5432:5432"
+      - "5433:5432"   # 5433 en tu PC (el 5432 lo usa el PostgreSQL local de Windows)
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
