@@ -1,0 +1,27 @@
+<h1>Importación del CSV legado</h1>
+
+<div class="tarjeta">
+  <p class="ayuda">
+    Formato: UTF-8, separado por comas, con cabecera
+    <code>ticket,placa,tipo,entrada,salida,perdido</code>.
+    Si un ticket se repite, vale la última fila.
+  </p>
+
+  <div class="fila-acciones">
+    <input type="file" accept=".csv,text/csv" (change)="seleccionarArchivo($event)" />
+    <button type="button" [disabled]="!archivo() || cargando()" (click)="importar()">
+      {{ cargando() ? 'Importando…' : 'Importar' }}
+    </button>
+  </div>
+</div>
+
+<app-error-alert [error]="error()" />
+
+@if (resultado(); as r) {
+  <p class="resumen">
+    <strong>{{ r.aceptadas.length }}</strong> filas aceptadas ·
+    <strong>{{ r.rechazadas.length }}</strong> filas rechazadas
+  </p>
+  <app-filas-aceptadas [filas]="r.aceptadas" />
+  <app-filas-rechazadas [filas]="r.rechazadas" />
+}
