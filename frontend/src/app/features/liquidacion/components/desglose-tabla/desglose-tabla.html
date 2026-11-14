@@ -1,0 +1,35 @@
+<div class="tarjeta">
+  <div class="encabezado">
+    <h2>Ticket {{ resultado().ticket }}</h2>
+    <span class="permanencia">Permanencia: {{ resultado().minutos }} min</span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Concepto</th>
+        <th>Artículo</th>
+        <th class="monto">Monto</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (linea of resultado().detalle; track $index) {
+        <tr>
+          <td>{{ linea.concepto }}</td>
+          <td><span class="etiqueta">{{ linea.articulo }}</span></td>
+          <td class="monto" [class.negativo]="linea.monto_centimos < 0">{{ linea.monto_centimos | soles }}</td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="3" class="vacio">Sin cargos</td>
+        </tr>
+      }
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="2">Total</th>
+        <th class="monto">{{ resultado().total_centimos | soles }}</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>

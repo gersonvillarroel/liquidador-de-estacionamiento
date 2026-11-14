@@ -1,0 +1,18 @@
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+}
+
+.encabezado h2 {
+  margin: 0;
+}
+
+.permanencia {
+  color: #555;
+}
+
+tfoot th {
+  font-size: 1.1rem;
+}

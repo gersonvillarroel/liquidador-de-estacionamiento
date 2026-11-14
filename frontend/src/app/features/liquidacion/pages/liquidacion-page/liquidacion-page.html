@@ -1,0 +1,53 @@
+<h1>Liquidación de ticket</h1>
+
+<form class="tarjeta formulario" [formGroup]="form" (ngSubmit)="liquidar()">
+  <label>
+    Ticket
+    <input formControlName="ticket" placeholder="T-1001" />
+    @if (campoInvalido('ticket')) {
+      <small class="campo-error">Ingrese el código del ticket</small>
+    }
+  </label>
+
+  <label>
+    Tipo de vehículo
+    <select formControlName="tipo">
+      @for (tipo of tipos; track tipo) {
+        <option [value]="tipo">{{ tipo }}</option>
+      }
+    </select>
+  </label>
+
+  <label>
+    Entrada (hora de Lima)
+    <input type="datetime-local" formControlName="entrada" />
+    @if (campoInvalido('entrada')) {
+      <small class="campo-error">Ingrese la fecha y hora de entrada</small>
+    }
+  </label>
+
+  <label>
+    Salida (hora de Lima)
+    <input type="datetime-local" formControlName="salida" />
+    @if (campoInvalido('salida')) {
+      <small class="campo-error">Ingrese la fecha y hora de salida</small>
+    }
+  </label>
+
+  <label class="check">
+    <input type="checkbox" formControlName="ticketPerdido" />
+    Ticket perdido
+  </label>
+
+  <div class="acciones">
+    <button type="submit" [disabled]="cargando()">
+      {{ cargando() ? 'Calculando…' : 'Liquidar' }}
+    </button>
+  </div>
+</form>
+
+<app-error-alert [error]="error()" />
+
+@if (resultado(); as r) {
+  <app-desglose-tabla [resultado]="r" />
+}
